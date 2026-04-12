@@ -35,7 +35,7 @@ const productSchema = new mongoose.Schema({
     media: [
         {
             type: mongoose.Schema.Types.ObjectId,
-            ref: media,
+            ref: 'Media',
             required: true
         }
     ],
