@@ -47,18 +47,9 @@ const MediaModel = ({ open, setOpen, selectedMedia = [], setSelectedMedia, isMul
 
         <Dialog
             open={open}
-            onOpenChange={() => setOpen(!open)} >
+            onOpenChange={setOpen} >
             <DialogContent onInteractOutside={(e) => e.preventDefault()}
-                className='p-0 overflow-hidden border-0 shadow-none ring-0 bg-white flex flex-col gap-0'
-                style={{
-                    width: '80vw',
-                    maxWidth: '80vw',
-                    height: '80vh',
-                    maxHeight: '80vh',
-                    top: '50%',
-                    left: '50%',
-                    transform: 'translate(-50%, -50%)'
-                }}
+                className='p-0 overflow-hidden border-0 shadow-none ring-0 bg-white flex flex-col gap-0 w-[80vw] max-w-[80vw] sm:max-w-[80vw] h-[80vh] max-h-[80vh]'
             >
                 <DialogDescription className='hidden'></DialogDescription>
 
@@ -81,7 +72,7 @@ const MediaModel = ({ open, setOpen, selectedMedia = [], setSelectedMedia, isMul
                                 </div>
                                 :
                                 <>
-                                    <div className='grid lg:grid-cols-5 sm:grid-cols-3 grid-cols-2 gap-1 mb-5'>
+                                    <div className='grid lg:grid-cols-5  sm:grid-cols-3 grid-cols-2 gap-1 mb-5'>
                                         {
                                             data?.pages?.map((page, index) => (
                                                 <React.Fragment key={index}>

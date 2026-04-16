@@ -33,7 +33,6 @@ const ModelMediaBlock = ({ media, selectedMedia, setSelectedMedia, isMultiple })
             className='border border-gray-200 dark:border-gray-800 relative group rounded overflow-hidden cursor-pointer'
             onClick={handleCheck}
         >
-            {media.name}
             <div className="absolute top-2 left-2 z-20" onClick={(e) => e.stopPropagation()}>
                 <Checkbox 
                 id={media._id} 
@@ -41,13 +40,13 @@ const ModelMediaBlock = ({ media, selectedMedia, setSelectedMedia, isMultiple })
                 onCheckedChange={handleCheck}
                 />
             </div>
-            <div className="size-full relative">
+            <div className="relative aspect-square bg-muted/20">
                 <Image
                     src={media?.secure_url}
                     alt={media?.alt || 'Media Image'}
                     width={300}
                     height={300}
-                    className='object-cover md:h-[150px] h-[100px]'
+                    className='size-full object-contain'
                 />
             </div>
         </div>
