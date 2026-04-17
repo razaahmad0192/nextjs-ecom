@@ -65,7 +65,7 @@ const Datatable = ({
                 fieldSeparator: ',',
                 decimalSeparator: '.',
                 useKeysAsHeaders: true,
-                filename: 'exported-data',
+                filename: 'exported-data.csv',
             })
             let csv 
             if(Object.keys(selectedRows).length > 0){
@@ -82,7 +82,24 @@ const Datatable = ({
                 const rowData = response.data
                 csv = generateCsv(csvConfig)(rowData)
             }
-            download(csvConfig)(csv)
+
+            const csvContent = csv.getCsvData ? csv.getCsvData() : csv
+            if (typeof window !== 'undefined' && window.showSaveFilePicker) {
+                const fileHandle = await window.showSaveFilePicker({
+                    suggestedName: 'exported-data.csv',
+                    types: [
+                        {
+                            description: 'CSV file',
+                            accept: { 'text/csv': ['.csv'] },
+                        },
+                    ],
+                })
+                const writable = await fileHandle.createWritable()
+                await writable.write(csvContent)
+                await writable.close()
+            } else {
+                download(csvConfig)(csv)
+            }
         } catch (error) {
             console.log(error)
             showToast('error', error.message)

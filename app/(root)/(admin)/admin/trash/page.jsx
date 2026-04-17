@@ -2,15 +2,12 @@
 import BreadCrumb from '@/components/Application/Admin/BreadCrumb'
 import DatatableWrapper from '@/components/Application/Admin/DatatableWrapper'
 import DeleteAction from '@/components/Application/Admin/DeleteAction'
-import EditAction from '@/components/Application/Admin/EditAction'
-import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader } from '@/components/ui/card'
-import { DT_CATEGORY_COLUMN, DT_COUPON_COLUMN, DT_PRODUCT_COLUMN, DT_PRODUCT_VARIANT_COLUMN, columnConfig } from '@/lib/column'
-import { ADMIN_CATEGORY_ADD, ADMIN_CATEGORY_EDIT, ADMIN_CATEGORY_SHOW, ADMIN_DASHBOARD, ADMIN_TRASH } from '@/routes/AdminPanelRoute'
-import Link from 'next/link'
+import { DT_CATEGORY_COLUMN, DT_COUPON_COLUMN, DT_CUSTOMER_COLUMN, DT_PRODUCT_COLUMN, DT_PRODUCT_VARIANT_COLUMN, columnConfig } from '@/lib/column'
+import { ADMIN_DASHBOARD, ADMIN_TRASH } from '@/routes/AdminPanelRoute'
 import { useSearchParams } from 'next/navigation'
 import React, { useCallback, useMemo } from 'react'
-import { FiPlus } from 'react-icons/fi'
+
 const breadcrumbData = [
   { href: ADMIN_DASHBOARD, label: 'Home' },
   { href: ADMIN_TRASH, label: 'Trash' },
@@ -46,7 +43,23 @@ const TRASH_CONFIG = {
     exportUrl: '/api/coupon/export',
     deleteUrl: '/api/coupon/delete',
 
+  },
+  customers:{
+    title: 'Customers Trash',
+    columns: DT_CUSTOMER_COLUMN,
+    fetchUrl: '/api/customers?deleteType=PD',
+    exportUrl: '/api/customers/export',
+    deleteUrl: '/api/customers/delete',
+
+  },
+  review:{
+    title: 'Reviews Trash',
+    columns: DT_CUSTOMER_COLUMN,
+    fetchUrl: '/api/review?deleteType=PD',
+    exportUrl: '/api/review/export',
+    deleteUrl: '/api/review/delete',
   }
+
 }
 const Trash = () => {
 

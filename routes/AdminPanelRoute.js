@@ -28,5 +28,11 @@ export const ADMIN_COUPON_ADD = "/admin/coupon/add"
 export const ADMIN_COUPON_EDIT = (id)=>id? `/admin/coupon/edit/${id}`:null
 export const ADMIN_COUPON_SHOW = "/admin/coupon"
 
+// Customer Routes
+export const ADMIN_CUSTOMERS_SHOW = "/admin/customers"
+
+// Review Routes
+export const ADMIN_REVIEW_SHOW = "/admin/review"
+
 // Trash Route
 export const ADMIN_TRASH = "/admin/trash"
