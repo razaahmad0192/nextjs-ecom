@@ -9,9 +9,9 @@ const layout = ({ children }) => {
   return (
     <SidebarProvider>
       <AppSidebar />
-      <main className=' md:w-[calc(100vw-16rem)]'>
+      <main className='w-full md:w-[calc(100vw-16rem)]'>
         <Topbar/>
-        <div className='px-8 pt-[70px] min-h-[calc(100vh-40px)] pb-10 '>
+        <div className='px-4 md:px-8 pt-[70px] min-h-[calc(100vh-40px)] pb-10 '>
         {children}
         </div>
         <div className="border-t min-h-10 px-4 py-2 flex justify-center items-center bg-gray-50 dark:bg-background text-sm text-muted-foreground">

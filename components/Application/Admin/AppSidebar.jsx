@@ -10,6 +10,7 @@ import {
     SidebarMenuSub,
     SidebarMenuSubButton,
     SidebarMenuSubItem,
+    useSidebar,
 } from "@/components/ui/sidebar"
 import logoBlack from "@/public/assets/images/logo-black.png"
 import logoWhite from "@/public/assets/images/logo-white.png"
@@ -23,9 +24,25 @@ import Link from 'next/link'
 
 const AppSidebar = () => {
     const [openMenus, setOpenMenus] = useState({})
+    const { isMobile, setOpenMobile, setOpen } = useSidebar()
 
     const handleMenuToggle = (index, isOpen) => {
         setOpenMenus((prev) => ({ ...prev, [index]: isOpen }))
+    }
+
+    const handleCloseSidebar = () => {
+        if (isMobile) {
+            setOpenMobile(false)
+            return
+        }
+
+        setOpen(false)
+    }
+
+    const handleMenuLinkClick = () => {
+        if (isMobile) {
+            setOpenMobile(false)
+        }
     }
 
     return (
@@ -36,7 +53,7 @@ const AppSidebar = () => {
 
                     <Image src={logoBlack.src} width={logoBlack.width - 200} className="h-12.5 w-auto block dark:hidden " height={50} alt="Logo Dark" />
                     <Image src={logoWhite.src} width={logoWhite.width - 200} className="h-12.5 w-auto hidden dark:block " height={50} alt="Logo White" />
-                    <Button type='button' size='icon' className='md:hidden'>
+                    <Button type='button' size='icon' className='md:hidden' onClick={handleCloseSidebar}>
                         <IoMdClose />
                     </Button>
                 </div>
@@ -54,7 +71,6 @@ const AppSidebar = () => {
                                 key={index}
                                 className="group/collapsible"
                                 open={isOpen}
-                                
                                 onOpenChange={(nextOpen) => handleMenuToggle(index, nextOpen)}
                             >
                                 <SidebarMenuItem>
@@ -71,6 +87,7 @@ const AppSidebar = () => {
                                         <SidebarMenuButton
                                             className='font-semibold px-2 py-5'
                                             render={<Link href={menu?.url} />}
+                                            onClick={handleMenuLinkClick}
                                         >
                                             <IconComponent />
                                             {menu.title}
@@ -87,6 +104,7 @@ const AppSidebar = () => {
                                                         <SidebarMenuSubButton
                                                             className='px-2 py-5'
                                                             render={<Link href={submenuItem.url} />}
+                                                            onClick={handleMenuLinkClick}
                                                         >
                                                             {submenuItem.title}
                                                         </SidebarMenuSubButton>

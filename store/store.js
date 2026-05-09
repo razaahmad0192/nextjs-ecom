@@ -9,7 +9,6 @@ const rootReducer = combineReducers({
     authStore: authReducer,
 })
 
-
 const persistConfig = {
     key: "root",
     storage: localStorage,

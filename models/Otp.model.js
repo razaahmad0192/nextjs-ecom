@@ -1,7 +1,5 @@
 import mongoose from "mongoose"
 
-
-
 const otpSchema = new mongoose.Schema({
     email: {
         type: String,
@@ -21,8 +19,3 @@ const otpSchema = new mongoose.Schema({
 otpSchema.index({ expiresAt: 1 }, { expireAfterSeconds: 0 })
 const OTPModel = mongoose.models.OTP || mongoose.model('OTP',otpSchema, 'otps')
 export default OTPModel
-
-
-
-
-
